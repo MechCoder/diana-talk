@@ -11950,9 +11950,19 @@ a.anchor-link {
 </li>
 </ul>
 <p>If it does not satisfy any of these conditions, you should be looking at <a href="https://docs.scipy.org/doc/scipy-0.18.1/reference/optimize.html">scipy.optimize</a> (gradient-based optimization) and not <a href="https://scikit-optimize.github.io/">scikit-optimize</a> (bayesian-optimisation)!</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Typical-examples.">Typical examples.<a class="anchor-link" href="#Typical-examples.">&#182;</a></h3><ul>
 <li>Mean cross-validation score of a deep neural-network on test data</li>
 <li>Simulation of a collider to get results.</li>
+<li>Click-through-rate (CTR) for optimizing ad wording or placement.</li>
 </ul>
 
 </div>
@@ -11966,7 +11976,7 @@ a.anchor-link {
 <ul>
 <li><p>Assume the black-box function $f$ is called <code>N</code> times with $X_i$</p>
 </li>
-<li><p>Every call provides noisy estimates $y_i$ such that $y_i = f(X_i) + \epsilon_{i}$ where $\epsilon_{i}$ is iid</p>
+<li><p>Every call provides noisy estimates $y_i$ such that $y_i = f(X_i) + \epsilon_{i}$ where $\epsilon_{i} \sim \mathcal{N}(0, \sigma^{2})$</p>
 </li>
 <li><p>Data $D$ is given by $(X_1, y_1), (X_2, y_2), ... (X_n, y_n)$</p>
 </li>
@@ -11984,7 +11994,7 @@ a.anchor-link {
 <li>Should provide a predictive distribution $P(Y | X)$ at every point.</li>
 <li>Examples: Gaussian Processes, Random Forests</li>
 </ul>
-<p>Will focus on gaussian processes on the rest of this talk, though random forests are highly useful when there a high number of categorical variables.</p>
+<p>Will focus on Gaussian Processes on the rest of this talk, though Random Forests are highly useful when there a high number of categorical variables.</p>
 
 </div>
 </div>
@@ -11994,15 +12004,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Python---a-scientific-calculator">Python - a scientific calculator<a class="anchor-link" href="#Python---a-scientific-calculator">&#182;</a></h3><ul>
-<li><p>Develop your own functions: unit conversion, finding correlation, .., anything really</p>
-</li>
-<li><p>Use PYTHONSTARTUP to extend the battery of readily available mathematical functions</p>
-</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">PYTHONSTARTUP</span><span class="o">=~/</span><span class="n">work</span><span class="o">/</span><span class="n">dmwp</span><span class="o">/</span><span class="n">pycon</span><span class="o">-</span><span class="n">us</span><span class="o">-</span><span class="mi">2016</span><span class="o">/</span><span class="n">startup_math</span><span class="o">.</span><span class="n">py</span> <span class="n">idle3</span> <span class="o">-</span><span class="n">s</span>
-</pre></div>
-
+<h3 id="Gaussian-Processes---A-short-introduction.">Gaussian Processes - A short introduction.<a class="anchor-link" href="#Gaussian-Processes---A-short-introduction.">&#182;</a></h3>
 </div>
 </div>
 </div></section><section>
