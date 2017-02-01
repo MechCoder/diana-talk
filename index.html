@@ -12365,8 +12365,30 @@ IhIRSugiIhGhhC4iEhFK6CIiEaGELiISEUroIiIR8f/3TKNSh4EbBQAAAABJRU5ErkJggg==
 </ul>
 <h3 id="How-does-scikit-optimize-handle-this?">How does scikit-optimize handle this?<a class="anchor-link" href="#How-does-scikit-optimize-handle-this?">&#182;</a></h3><ul>
 <li>Default is multi-start lbfgs.</li>
-<li>Start points are obtained by the best points on a uniform-grid</li>
+<li>Start points are obtained by the "best" points on a uniform-grid</li>
 <li>More advanced techniques like entropy-search, DIRECT (soon in skopt)</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tie-it-up-all-together!">Tie it up all together!<a class="anchor-link" href="#Tie-it-up-all-together!">&#182;</a></h3><ul>
+<li><p>Call black box $f^*$ $N$ times to obtain $D$ = $(X_1, y_1), (X_2, y_2), ... (X_N, y_N)$</p>
+</li>
+<li><p>For $n$ in $n_{calls}$</p>
+<ul>
+<li>Fit model to $D$</li>
+<li>Obtain $X_{c} = \underset{x}{\operatorname{argmin}}$ acq(x)</li>
+<li>$D$ = concat($D, (X_c, f^*(X_c))$)</li>
+</ul>
+</li>
+<li><p>Return $X_i$ for which $y_i$ is minimum.</p>
+</li>
 </ul>
 
 </div>
