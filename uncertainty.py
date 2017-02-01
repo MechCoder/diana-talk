@@ -5,14 +5,14 @@ import numpy as np
 from skopt.learning import GaussianProcessRegressor
 from skopt.learning.gaussian_process.kernels import RBF
 
-all_x = np.reshape(np.linspace(0, 20, 100), (-1, 1))
+all_x = np.reshape(np.linspace(0, 6, 100), (-1, 1))
 all_f = [black_box(xi) for xi in all_x]
 
 # Plot all points.
 plt.plot(all_x, all_f)
 
-# Train only one half of the training data.
-X = np.reshape(np.linspace(0, 10, 10), (-1, 1))
+# Train only one third of the training data.
+X = np.reshape(np.linspace(4, 6, 10), (-1, 1))
 y = [black_box(xi) for xi in X]
 
 # Use RBF kernel.
