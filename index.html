@@ -11929,7 +11929,7 @@ a.anchor-link {
 </li>
 <li><p>An acquisition function.</p>
 </li>
-<li><p>Package(s) that takes care of all of these under the hood.</p>
+<li><p>Package(s) that takes care of all of these under the hood!</p>
 </li>
 </ul>
 
@@ -11950,9 +11950,26 @@ a.anchor-link {
 </li>
 </ul>
 <p>If it does not satisfy any of these conditions, you should be looking at <a href="https://docs.scipy.org/doc/scipy-0.18.1/reference/optimize.html">scipy.optimize</a> (gradient-based optimization) and not <a href="https://scikit-optimize.github.io/">scikit-optimize</a> (bayesian-optimisation)!</p>
-<h4 id="Typical-examples.">Typical examples.<a class="anchor-link" href="#Typical-examples.">&#182;</a></h4><ul>
+<h3 id="Typical-examples.">Typical examples.<a class="anchor-link" href="#Typical-examples.">&#182;</a></h3><ul>
 <li>Mean cross-validation score of a deep neural-network on test data</li>
 <li>Simulation of a collider to get results.</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><p>Assume the black-box function $f$ is called <code>N</code> times with $X_i$</p>
+</li>
+<li><p>Every call provides noisy estimates $y_i$ such that $y_i = f(X_i) + \epsilon_{i}$ where $\epsilon_{i}$ is iid</p>
+</li>
+<li><p>Data $D$ is given by $(X_1, y_1), (X_2, y_2), ... (X_n, y_n)$</p>
+</li>
 </ul>
 
 </div>
@@ -11971,7 +11988,7 @@ a.anchor-link {
 
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
