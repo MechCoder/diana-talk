@@ -19,7 +19,7 @@ y = [black_box(xi) for xi in X]
 rbf = RBF(length_scale=1.0)
 gpr = GaussianProcessRegressor(kernel=rbf, alpha=1e-12)
 gpr.fit(X, y)
-plt.plot(np.ravel(X), y, "ro", label="True function")
+plt.plot(np.ravel(X), y, "ro", label="Fit points")
 
 # Predict on all data.
 y_pred, y_std = gpr.predict(all_x, return_std=True)
