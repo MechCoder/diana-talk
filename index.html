@@ -11896,9 +11896,9 @@ a.anchor-link {
 <li>Masters Student at New York University</li>
 <li>Core developer of sklearn</li>
 <li>Contributed to Spark and SymPy</li>
-<li><a href="http://github.com/MechCoder">GitHub</a></li>
 </ul>
 <h4 id="Contact">Contact<a class="anchor-link" href="#Contact">&#182;</a></h4><ul>
+<li><a href="http://github.com/MechCoder">GitHub</a></li>
 <li><a href="http://twitter.com/MechCoderr">@MechCoderr</a></li>
 </ul>
 
@@ -11916,29 +11916,22 @@ a.anchor-link {
 <center><font size="12"> All presentation materials: https://github.com/MechCoder/diana-talk</font></center>
 </div>
 </div>
-</div><aside class="notes">
-
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So, what am I selling to you today? Not my book (I am, but in a subtle way). I am presenting an idea, a hypothesis or even making a statement - Python can lead to a more enriching learning and teaching experience in the classroom.</p>
-<p>Let me explain where I am coming from. When I think back about when I was learning to program and learning all other subjects in standards 7-10. I think it's true today as well. Programming and other subjects such as Math, Science are taught in a disconnected fashion. Programming seems to be all about finding the sum of a series or generating fibonacci numbers. Make no mistake, these exercises are what builds up the programming logic. Some students get really excited about being able to do these, but a lot of them don't.  It's a lot like not everyone gets interested in solving puzzles - i don't, i never took to them.</p>
-<p>I think I know of a way we could excite more students! Show them how you can write programs to do your homework, or experiment without having to go the science lab or setup elaborate experimental setups. This is my goal for today - in the following slides and notebooks, I will hypothesise on a way of connecting Python programming and other subjects. That will show that programming is a way to get real work done, not something to learn for the sake of it.</p>
-<p>We need some tools to help us on our quest. The Python community has some giant shoulders we can stand upon - Python 3, SymPy and matplotlib.</p>
-
-</div>
-</div>
-</div>
-</aside></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="This-talk---a-proposal,-a-hypothesis,-a-statement">This talk - a proposal, a hypothesis, a statement<a class="anchor-link" href="#This-talk---a-proposal,-a-hypothesis,-a-statement">&#182;</a></h3><p>What? <em>Python can lead to a more enriching learning and teaching experience in the classroom</em></p>
-<p>How? <em>Next slides</em></p>
+<h3 id="Bayesian-Optimisation---Ingredients">Bayesian Optimisation - Ingredients<a class="anchor-link" href="#Bayesian-Optimisation---Ingredients">&#182;</a></h3><ul>
+<li><p>An expensive black-box function.</p>
+</li>
+<li><p>A predictive model that provides $P(Y | X)$</p>
+</li>
+<li><p>An acquisition function.</p>
+</li>
+<li><p>Package(s) that takes care of all of these under the hood.</p>
+</li>
+</ul>
 
 </div>
 </div>
@@ -11948,9 +11941,19 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tools-(or,-Giant-shoulders-we-will-stand-on)">Tools (or, Giant shoulders we will stand on)<a class="anchor-link" href="#Tools-(or,-Giant-shoulders-we-will-stand-on)">&#182;</a></h3><p><img align="center" src="images/giant_shoulders_collage.jpg"></img></p>
-<p><em>Python 3</em>, <em>SymPy</em>, <em>matplotlib</em></p>
-<p>*Individual logos are copyright of the respective projects. <a href="http://www.orphancaremovement.org/standing-on-the-shoulder-of-giants/">Source</a> of the "giant shoulders" image.</p>
+<h3 id="Black-box-function">Black-box function<a class="anchor-link" href="#Black-box-function">&#182;</a></h3><ul>
+<li><p>Expensive to evaluate.</p>
+</li>
+<li><p>Noisy to evaluate.</p>
+</li>
+<li><p>Gradients unavailable.</p>
+</li>
+</ul>
+<p>If it does not satisfy any of these conditions, you should be looking at <a href="https://docs.scipy.org/doc/scipy-0.18.1/reference/optimize.html">scipy.optimize</a> (gradient-based optimization) and not <a href="https://scikit-optimize.github.io/">scikit-optimize</a> (bayesian-optimisation)!</p>
+<h4 id="Typical-examples.">Typical examples.<a class="anchor-link" href="#Typical-examples.">&#182;</a></h4><ul>
+<li>Mean cross-validation score of a deep neural-network on test data</li>
+<li>Simulation of a collider to get results.</li>
+</ul>
 
 </div>
 </div>
