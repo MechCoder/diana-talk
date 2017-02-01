@@ -11923,7 +11923,7 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bayesian-Optimisation---Ingredients">Bayesian Optimisation - Ingredients<a class="anchor-link" href="#Bayesian-Optimisation---Ingredients">&#182;</a></h3><ul>
-<li><p>An expensive black-box function.</p>
+<li><p>A black-box function.</p>
 </li>
 <li><p>A predictive model that provides $P(Y | X)$</p>
 </li>
@@ -12004,62 +12004,60 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gaussian-Processes---A-short-introduction.">Gaussian Processes - A short introduction.<a class="anchor-link" href="#Gaussian-Processes---A-short-introduction.">&#182;</a></h3>
+<h3 id="Gaussian-Processes---Training">Gaussian Processes - Training<a class="anchor-link" href="#Gaussian-Processes---Training">&#182;</a></h3><ul>
+<li><p>Assume the points $(X_1, y_1), (X_2, y_2), ... (X_N, y_N)$ are obtained from the black box.</p>
+</li>
+<li><p>Recenter the points $y_i$ such that the mean is zero.</p>
+</li>
+<li><p>Now the assumption is that $y$ forms a multivariate normal distribution.</p>
+</li>
+<li><p>Mean of size $N$ given by the origin.</p>
+</li>
+<li><p>The covariance matrix $K^m$ is computed by a kernel $K$.</p>
+</li>
+<li><p>Each element $K^m_{ij}$ is given by $K(X_i, X_j)$</p>
+</li>
+</ul>
+
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Unit-conversion-functions">Unit conversion functions<a class="anchor-link" href="#Unit-conversion-functions">&#182;</a></h3><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> <span class="n">unit_conversion</span><span class="p">()</span>
-<span class="mf">1.</span> <span class="n">Kilometers</span> <span class="n">to</span> <span class="n">Miles</span>
-<span class="mf">2.</span> <span class="n">Miles</span> <span class="n">to</span> <span class="n">Kilometers</span>
-<span class="mf">3.</span> <span class="n">Kilograms</span> <span class="n">to</span> <span class="n">Pounds</span>
-<span class="mf">4.</span> <span class="n">Pounds</span> <span class="n">to</span> <span class="n">Kilograms</span>
-<span class="mf">5.</span> <span class="n">Celsius</span> <span class="n">to</span> <span class="n">Fahrenheit</span>
-<span class="mf">6.</span> <span class="n">Fahrenheit</span> <span class="n">to</span> <span class="n">Celsius</span>
-<span class="n">Which</span> <span class="n">conversion</span> <span class="n">would</span> <span class="n">you</span> <span class="n">like</span> <span class="n">to</span> <span class="n">do</span><span class="err">?</span> <span class="mi">6</span>
-<span class="n">Enter</span> <span class="n">temperature</span> <span class="ow">in</span> <span class="n">fahrenheit</span><span class="p">:</span> <span class="mi">98</span>
-<span class="n">Temperature</span> <span class="ow">in</span> <span class="n">celsius</span><span class="p">:</span> <span class="mf">36.66666666666667</span>
-<span class="o">&gt;&gt;&gt;</span>
-</pre></div>
+<h3 id="Gaussian-Processes---What-to-train?">Gaussian Processes - What to train?<a class="anchor-link" href="#Gaussian-Processes---What-to-train?">&#182;</a></h3><ul>
+<li><p>Different kernels hold different assumptions about the smoothness of the functions.</p>
+</li>
+<li><p>Available kernels in skopt can be seen <a href="https://github.com/scikit-optimize/scikit-optimize/blob/master/skopt/learning/gaussian_process/kernels.py">here</a></p>
+</li>
+<li><p>Also, different covariance matrices have different (hyper)parameters.</p>
+</li>
+<li><p>For example, the squared exponential kernel has a different length scale for each dimension.</p>
+</li>
+<li><p>In the sklearn implementation, "best" parameters are obtained by maximizing the log-likelihood on training data</p>
+</li>
+</ul>
 
 </div>
 </div>
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Finding-linear-correlation">Finding linear correlation<a class="anchor-link" href="#Finding-linear-correlation">&#182;</a></h3><div class="highlight"><pre><span></span><span class="o">&gt;&gt;&gt;</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">,</span> <span class="mf">7.9</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">find_corr_x_y</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="mf">0.9995411791453812</span>
-</pre></div>
+<h3 id="Gaussian-Processes---Prediction">Gaussian Processes - Prediction<a class="anchor-link" href="#Gaussian-Processes---Prediction">&#182;</a></h3><ul>
+<li><p>For new points, the posterior is also multivariate gaussian.</p>
+</li>
+<li><p>This intuitively gives the prediction for the new point and how certain one is about the prediction.</p>
+</li>
+</ul>
 
 </div>
 </div>
-</div><aside class="notes">
-
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So, that was Python and it's standard libraries. When you bring in third party libraries to the mix, Python becomes a seriously fancy calculator.</p>
-<p>Who has heard about SymPy?</p>
-<p>You can give it algebraic expressions to a function and a graph will be created for you.</p>
-<p>You can give an equation and out comes the solutions for that equation.</p>
-<p>We can even solve calculus problems.</p>
-
-</div>
-</div>
-</div>
-</aside></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
