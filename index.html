@@ -11907,13 +11907,35 @@ a.anchor-link {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Bayesian-Optimisation---Ingredients">Bayesian Optimisation - Ingredients<a class="anchor-link" href="#Bayesian-Optimisation---Ingredients">&#182;</a></h3><ul>
-<li><p>A black-box function.</p>
+<li><p>A black-box function $f^*(X)$.</p>
 </li>
 <li><p>A predictive model that provides $P(Y | X)$</p>
 </li>
-<li><p>An acquisition function.</p>
+<li><p>An acquisition function acq(x) that uses $P(Y | X)$.</p>
 </li>
 <li><p>Package(s) that takes care of all of these under the hood!</p>
+</li>
+</ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Tie-all-the-ingredients-together!">Tie all the ingredients together!<a class="anchor-link" href="#Tie-all-the-ingredients-together!">&#182;</a></h3><ul>
+<li><p>Call black box $f^*(X)$ $N$ times to obtain $D$ = $(X_1, y_1), (X_2, y_2), ... (X_N, y_N)$</p>
+</li>
+<li><p>For $n$ in $n_{calls}$</p>
+<ul>
+<li>Fit model to $D$</li>
+<li>Obtain $X_{c} = \underset{x}{\operatorname{argmin}}$ acq(x)</li>
+<li>$D$ = concat($D, (X_c, f^*(X_c))$)</li>
+</ul>
+</li>
+<li><p>Return $X_i$ for which $y_i$ is minimum.</p>
 </li>
 </ul>
 
@@ -11946,25 +11968,242 @@ a.anchor-link {
 <h3 id="Typical-examples.">Typical examples.<a class="anchor-link" href="#Typical-examples.">&#182;</a></h3><ul>
 <li>Mean cross-validation score of a deep neural-network on test data</li>
 <li>Simulation of a collider to get results.</li>
-<li>Click-through-rate (CTR) for optimizing ad wording or placement.</li>
+<li>Click-through-rate (CTR) for optimizing online advertisement display.</li>
 </ul>
 
 </div>
 </div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Our black-box function for today.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="k">import</span> <span class="n">black_box</span>
+
+<span class="n">all_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">all_f</span> <span class="o">=</span> <span class="p">[</span><span class="n">black_box</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">all_x</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">all_x</span><span class="p">,</span> <span class="n">all_f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>Assume the black-box function $f$ is called <code>N</code> times with $X_i$</p>
-</li>
-<li><p>Every call provides noisy estimates $y_i$ such that $y_i = f(X_i) + \epsilon_{i}$ where $\epsilon_{i} \sim \mathcal{N}(0, \sigma^{2})$</p>
-</li>
-<li><p>Data $D$ is given by $(X_1, y_1), (X_2, y_2), ... (X_n, y_n)$</p>
-</li>
-</ul>
+<h3 id="High-level-usage">High level usage<a class="anchor-link" href="#High-level-usage">&#182;</a></h3><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">skopt</span> <span class="kn">import</span> <span class="n">gp_minimize</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">black_box</span>
+
+<span class="c1"># Provide initial points from 5.0 - 6.0, away from the original minimum.</span>
+<span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">y0</span> <span class="o">=</span> <span class="p">[</span><span class="n">black_box</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span> <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="n">x0</span><span class="p">]</span>
+
+<span class="c1"># Search for minimum from 0.0 - 6.0</span>
+<span class="n">dimensions</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">],]</span>
+
+<span class="c1"># Optimize!</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">gp_minimize</span><span class="p">(</span>
+    <span class="n">black_box</span><span class="p">,</span>
+    <span class="n">dimensions</span><span class="o">=</span><span class="n">dimensions</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="n">x0</span><span class="p">,</span>
+    <span class="n">y0</span><span class="o">=</span><span class="n">y0</span><span class="p">,</span>
+    <span class="n">n_random_starts</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">n_calls</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span>
+<span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">])</span>
+<span class="p">[</span><span class="mf">2.441</span><span class="p">]</span>
+</pre></div>
 
 </div>
 </div>
@@ -12367,28 +12606,6 @@ IhIRSugiIhGhhC4iEhFK6CIiEaGELiISEUroIiIR8f/3TKNSh4EbBQAAAABJRU5ErkJggg==
 <li>Default is multi-start lbfgs.</li>
 <li>Start points are obtained by the "best" points on a uniform-grid</li>
 <li>More advanced techniques like entropy-search, DIRECT (soon in skopt)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Tie-it-up-all-together!">Tie it up all together!<a class="anchor-link" href="#Tie-it-up-all-together!">&#182;</a></h3><ul>
-<li><p>Call black box $f^*$ $N$ times to obtain $D$ = $(X_1, y_1), (X_2, y_2), ... (X_N, y_N)$</p>
-</li>
-<li><p>For $n$ in $n_{calls}$</p>
-<ul>
-<li>Fit model to $D$</li>
-<li>Obtain $X_{c} = \underset{x}{\operatorname{argmin}}$ acq(x)</li>
-<li>$D$ = concat($D, (X_c, f^*(X_c))$)</li>
-</ul>
-</li>
-<li><p>Return $X_i$ for which $y_i$ is minimum.</p>
-</li>
 </ul>
 
 </div>
