@@ -11906,7 +11906,7 @@ a.anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Bayesian-Optimisation---Ingredients">Bayesian Optimisation - Ingredients<a class="anchor-link" href="#Bayesian-Optimisation---Ingredients">&#182;</a></h3><ul>
+<h3 id="Bayesian-Optimisation">Bayesian Optimisation<a class="anchor-link" href="#Bayesian-Optimisation">&#182;</a></h3><h3 id="Ingredients">Ingredients<a class="anchor-link" href="#Ingredients">&#182;</a></h3><ul>
 <li><p>A black-box function $f^*(X)$.</p>
 </li>
 <li><p>A predictive model that provides $P(Y | X)$</p>
@@ -11916,6 +11916,7 @@ a.anchor-link {
 <li><p>Package(s) that takes care of all of these under the hood!</p>
 </li>
 </ul>
+<h3 id="Goal">Goal<a class="anchor-link" href="#Goal">&#182;</a></h3><p>The goal being to minimize the black-box function $f^*(X)$</p>
 
 </div>
 </div>
@@ -11938,6 +11939,17 @@ a.anchor-link {
 <li><p>Return $X_i$ for which $y_i$ is minimum.</p>
 </li>
 </ul>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="scikit-optimize">scikit-optimize<a class="anchor-link" href="#scikit-optimize">&#182;</a></h3><h3 id="About">About<a class="anchor-link" href="#About">&#182;</a></h3><p>A user friendly package that makes bayesian optimisation easy-to-use.</p>
+<h3 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h3><p>pip(3) install skopt</p>
 
 </div>
 </div>
@@ -12325,8 +12337,10 @@ IhIRSugiIhGhhC4iEhFK6CIiEaGELiISEUroIiIR8f/3TKNSh4EbBQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Predictive-model">Predictive model<a class="anchor-link" href="#Predictive-model">&#182;</a></h3><ul>
+<h3 id="More-deeper:">More deeper:<a class="anchor-link" href="#More-deeper:">&#182;</a></h3><h3 id="Predictive-model">Predictive model<a class="anchor-link" href="#Predictive-model">&#182;</a></h3><ul>
 <li>Should provide a predictive distribution $P(Y | X)$ at every point.</li>
+<li>Cheap approximation to the actual function.</li>
+<li>Provides information about the variance in the function approximation.</li>
 <li>Examples: Gaussian Processes, Random Forests</li>
 </ul>
 <p>Will focus on Gaussian Processes on the rest of this talk, though Random Forests are highly useful when there a high number of categorical variables.</p>
@@ -12340,7 +12354,7 @@ IhIRSugiIhGhhC4iEhFK6CIiEaGELiISEUroIiIR8f/3TKNSh4EbBQAAAABJRU5ErkJggg==
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Gaussian-Processes---Training">Gaussian Processes - Training<a class="anchor-link" href="#Gaussian-Processes---Training">&#182;</a></h3><ul>
-<li><p>Assume the points $(X_1, y_1), (X_2, y_2), ... (X_N, y_N)$ are obtained from the black box.</p>
+<li><p>Assume the points $D = (X_1, y_1), (X_2, y_2), ... (X_N, y_N)$ are obtained from the black box.</p>
 </li>
 <li><p>Recenter the points $y_i$ such that the mean is zero.</p>
 </li>
@@ -12348,9 +12362,9 @@ IhIRSugiIhGhhC4iEhFK6CIiEaGELiISEUroIiIR8f/3TKNSh4EbBQAAAABJRU5ErkJggg==
 </li>
 <li><p>Mean of size $N$ given by the origin.</p>
 </li>
-<li><p>The covariance matrix $K^m$ is computed by a kernel $K$.</p>
+<li><p>The covariance matrix $K^D$ is computed by a kernel $K$.</p>
 </li>
-<li><p>Each element $K^m_{ij}$ is given by $K(X_i, X_j)$</p>
+<li><p>Each element $K^D_{ij}$ is given by $K(X_i, X_j)$</p>
 </li>
 </ul>
 
@@ -12529,6 +12543,8 @@ IhIRSugiIhGhhC4iEhFK6CIiEaGELiISEUroIiIR8f/3TKNSh4EbBQAAAABJRU5ErkJggg==
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Website">Website<a class="anchor-link" href="#Website">&#182;</a></h3><p><a href="https://scikit-optimize.github.io/">https://scikit-optimize.github.io/</a></p>
+<h3 id="Issue-tracker">Issue tracker<a class="anchor-link" href="#Issue-tracker">&#182;</a></h3><p><a href="https://github.com/scikit-optimize/scikit-optimize/issues">https://github.com/scikit-optimize/scikit-optimize/issues</a></p>
 
 </div>
 </div>
