@@ -30,6 +30,7 @@ upper_bound = y_pred + 1.96*y_std
 lower_bound = y_pred - 1.96*y_std
 
 plt.title("Acquisition values.")
+plt.plot(np.ravel(X), y, "ro")
 plt.plot(all_x_plot, y_pred, "r", label="Predictions")
 plt.plot(all_x_plot, ei_vals, "b", label="-EI")
 plt.plot(all_x_plot, lcb_vals, "black", label="LCB")
